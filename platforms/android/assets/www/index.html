@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=normal-dpi" />
+        
+        
+        
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.3.2.min.js"></script>
+        <script type="text/javascript" src="js/toastr.js"></script>
+        <script type="text/javascript" src="js/jquery-canvas-sparkles.min.js"></script>
+        <script src="js/pokeMain.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAkgriRwtI5YIIklYxNe3uB2trpgyJEc8w&v=3.exp&sensor=true"></script>
+        
+        <script>
+google.maps.event.addDomListener(window, 'load', initialize);
+        /*     $.get('http://shahabazkhan.byethost3.com/pokemaster/data/pokemonJson.json', function(data) {
+   pokemonJsonObj = eval ("(" + data + ")");       //everything there in obj
+               //alert(obj[0].id);      //proper way to get id of 0th monster..
+}, 'text');*/
+ 
+    </script>
+        
+    
+        <link rel="stylesheet" type="text/css" href="css/animate.css" />
+        <link rel="stylesheet" type="text/css" href="css/toastr.css" />
+    </head>
+    <body style="background:#fff"  onload="init()">
+         
+        
+        
+    <div data-role="page" id='mapPage' style="background:#fff;">
+        
+        
+        <div id="map-canvas">
+        </div>
+        <div id='pokemonDiv' style="padding-top:40px;background:#fff;" align=center class=inner>
+        <img src="" id="pokemonPic" class="animated bounce infinite pokemon_fullImg" height=200px width=auto onclick="throwBall();">
+        
+        <div align=center>
+            <p><label id=pokemonName></label><img class='ownsMark'></p>
+            </div>
+            </div>
+        
+        <div style='position:relative;z-index:2;background-color:#ffffff;'>
+            <div align=center>
+            <table class='inventoryDiv'>
+                <tr>
+                <td><img src='img/Veilstone_Corner_Lightning_Bolt.png' class='icon'></td><td id='energyCount'>100</td>
+                    <td><img src='img/Poke_Ball.png' onclick="selectBall('pb')" class='icon'></td><td id='pbCount' onclick="selectBall('pb')" ></td>
+                    <td><img src='img/great_ball.png' onclick="selectBall('gb')" class='icon'></td><td id='gbCount' onclick="selectBall('gb')"></td>
+                    <td><img src='img/ultra_ball.png' onclick="selectBall('ub')" class='icon'></td><td id='ubCount' onclick="selectBall('ub')"></td>
+                    <td><img src='img/master_ball.png' onclick="selectBall('mb')" class='icon'></td><td id='mbCount' onclick="selectBall('mb')"></td>
+                </tr>
+                <tr>
+                <td colspan="2"></td>
+                    <td id='pbSelectTD' colspan="2" class='ballSelector tdSelect'></td>
+                    <td id='gbSelectTD' colspan="2" class='ballSelector'></td>
+                    <td id='ubSelectTD' colspan="2" class='ballSelector'></td>
+                    <td id='mbSelectTD' colspan="2" class='ballSelector'></td>
+                </tr>
+                
+                </table>
+            </div>
+        
+        <div id=themeDiv style="background:url('img/theme/bg0.jpg') top left no-repeat;background-size:100% 100%;" class=shadowDiv>
+            <!--<div align=center>
+            <div align=center class='button accentColor' onclick="scanButton();">
+            <p>Scan</p>
+            </div>
+                <div align=center class='button accentColor' onclick="showParty()">
+            <p>My Party</p>
+            </div>
+                <div align=center class='button accentColor' onclick="window.localStorage.setItem('mb', 100);">
+            <p>Ball Cheat</p>
+            </div>
+                <div align=center class='button accentColor' onclick="playAudio('http://shahabazkhan.byethost3.com/pokemaster/data/cries/428.wav')">
+            <p>Cry</p>
+            </div>
+             
+            </div>
+<div align=center class='button accentColor' onclick="showParty()">
+            <p>My Party</p>
+            </div>
+                <div align=center class='button accentColor' onclick="window.localStorage.setItem('mb', 100);">
+            <p>Ball Cheat</p>
+            </div>
+                <div align=center class='button accentColor' onclick="playAudio('http://shahabazkhan.byethost3.com/pokemaster/data/cries/428.wav')">
+            <p>Cry</p>
+            </div>
+-->
+            <div align=center>
+            <img id='scanBtn' style='width:100px;height:auto;display:inline-block' onclick="scanButton();"><br>
+            <img id='myPartyBtn' style='width:150px;height:auto;display:inline-block;' onclick="showParty();"><br>
+            <img id='trainerBtn' style='width:120px;height:auto;display:inline-block' onclick="nav('trainerCard');" /><br>
+            <img id='logoutBtn' style='width:120px;height:auto;display:inline-block' />
+            </div>
+                
+            <!--<div align=right>
+                <div class='ribbon'><p class=level>Lv. 1</p> </div>
+       <p>Registered to: <b><label class='trainerName'>...</label></b></p>
+                
+                </div>-->
+            
+            <!--<div align=center style='margin-top:50px;'>
+                <p>Master Respect: <label class='points'></label></p>
+                <table class='card'>
+                <tr>
+                    <td colspan=2>PokeMaster Member<hr></td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 id='starSpot'>
+                        
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                    <td style='width:80px;'><img class='seal' style='width:80px;'></td>
+                        <td align=right><p class='trainerName'>Name</p><b><p class=level id=cardLvl>Lv..</p></b></td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 style='background-color:BLACK'>
+                    <label>ID: <label class='id'></label></label>
+                        </td>
+                    </tr>
+                </table>
+            </div>-->
+        </div>
+        
+        <!--<div class=shadowDiv>
+        <p id="geolocation">Watching geolocation :P...</p>
+        </div>-->
+            <p id='debugMsg'></p>
+        <p><center><b>DISCLAIMER: This is a fan based application. Pok&#233;mon is owned by Nintendo, Game Freak, The Pok&#233;mon Company and Creatures. Please support the original products.</b></center></p>
+            <p><center>Pok&#233;mon images &amp; names &#169; 1995-2015 Nintendo/Game Freak.</center></p>
+      <!--<p>Pok&#233;mon content &#169;2014 Pok&#233;mon/Nintendo/Creatures/GAME FREAK</p>-->  
+    </div>
+        </div>
+        
+      <div data-role="page" id='register' style="background:url('img/pokemaster.jpg') top left no-repeat;background-size:100% 100%;padding-top:50px;padding-bottom:50px"> 
+          <div class=shadowDiv>
+         <h4>Log in to your account</h4>
+          <input type=text id="unameL" placeholder="Username">
+          <input type="password" id="passL" placeholder="****">
+          <button onclick="loginDirect()">Login</button>
+              </div>
+         <hr>
+          <div class=shadowDiv>
+         <h4>Become a registered trainer</h4>
+          <input type=text id="uname" placeholder="Username">
+          <input type="email" id="email" placeholder="Email">
+          <input type="password" id="pass" placeholder="Password">
+          <button onclick="register()">Register</button>
+              </div>
+          </div>  
+     
+      <div data-role="page" id='partyBox'> 
+          <div id='partyDiv'>
+          <p>Loading Your Party..</br>If nothing has loaded up even after you finish reading this, then something's wrong..! We recommend restarting the app.</p>
+          </div>
+        </div>
+        
+<div data-rol='page' id='trainerCard'>
+<div align=center style='margin-top:50px;'>
+                <p>Master Respect: <label class='points'></label></p>
+                <table class='card'>
+                <tr>
+                    <td colspan=2>PokeMaster Member<hr></td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 id='starSpot'>
+                        
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                    <td style='width:80px;'><img class='seal' style='width:80px;'></td>
+                        <td align=left><p class='trainerName'>Name</p><b><p class=level id=cardLvl>Lv..</p></b></td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 style='background-color:BLACK'>
+                    <label>ID: <label class='id'></label></label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+</div>
+        <div data-role="page" id='detailPage'>
+            <div align=center style="background-color:#ffffff;">
+          <img id='pokemonImg_detailPage' class='pokemon_fullImg'>
+                <h3 id='pkmnName_detailPage'>Name</h3>
+                
+                
+                <p id='foundDetail'></p>
+                
+                <table class='detailTable'>
+                <tr>
+                    <th>Type:</th>
+                    <td id='pkmnType_detailPage'></td>
+                </tr>
+                    <tr>
+                    <th>Species:</th>
+                    <td id='pkmnSpcs_detailPage'></td>
+                </tr>
+                    <tr>
+                    <th>Height:</th>
+                    <td id='pkmnHeight_detailPage'></td>
+                </tr>
+                    <tr>
+                    <th>Weight:</th>
+                    <td id='pkmnWeight_detailPage'></td>
+                </tr>
+                    <tr>
+                    <th>Abilities:</th>
+                    <td id='pkmnAbility_detailPage'></td>
+                </tr>
+                </table>
+            </div>
+        </div>
+        
+       <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.1.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+        <script>
+		
+		$(document).ready(function () {
+            initialize();
+			
+			$(window).scroll(function () {
+               
+				s = $(window).scrollTop();
+				$("#map-canvas").css("-webkit-transform","translateY(" +  (s/2)  + "px)");
+			});
+            
+               
+		
+		})
+	
+	</script>
+    </body>
+</html>

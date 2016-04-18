@@ -1,0 +1,222 @@
+#map-canvas {
+        height: 200px;
+        margin: 0px;
+        padding: 0px;
+    position: relative;
+    z-index:0;
+    
+      }
+             .divButton
+             {
+                 background:rgba(225,225,225,0.3);
+                 color:#000;
+                 width:150px;
+                 opacity:1;
+                 margin-top:20px;
+                 border:1px SOLID #dedede;
+             }
+             .shadowDiv
+             {
+                 background:#fff;
+                 border:1px SOLID #dedede;
+                 margin-left:5%;
+                 margin-right:5%;
+                 margin-top:10px;
+                 padding-top:20px;
+                 padding-bottom:20px;
+                 padding-left:20px;
+                 padding-right:20px;
+                 box-shadow: 0 0 1px #555555;
+             }
+             .inner { display: none;}
+             
+    @font-face {
+    font-family: pokeFont;
+    src: url("font/Pokemon%20Solid.ttf");
+}
+
+#pokemonName{
+
+    font-size:30px;
+    font-family: pokeFont;
+}
+
+.uniqueName {
+ display: table;
+  margin: 0 auto;
+  font-weight: 400;
+  font-size: 5em;
+  background: linear-gradient(330deg, #e05252 0%, #99e052 25%, #52e0e0 50%, #9952e0 75%, #e05252 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 200px;
+    
+}
+
+.partyFlap{
+ 
+    display: inline-block;
+    width:100px;
+    height:auto;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+#partyDiv {
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.ownsMark {
+ 
+    
+    width:20px;
+    margin-left:10px;
+    vertical-align:top;
+}
+#pokemonImg_detailPage {
+    max-height:200px;
+    max-width:100%;
+    margin-top:20px;
+}
+
+.detailTable{
+ 
+    width:80%;
+    
+}
+
+.detailTable tr td{
+ 
+    width:50%;
+    
+}
+
+.detailTable tr th:first-child{
+ 
+    text-align: right;
+}
+
+.detailTable tr td:nth-child(2){
+ 
+    text-align: left;
+}
+
+.accentColor{
+ 
+    background-color:#2196F3;
+}
+.primaryColor
+{
+ 
+    background-color: #F44336;
+}
+.fancyButton1{
+ 
+    background-color:#e97861;
+   
+}
+
+.fancyButton2{
+ 
+    background-color:#e9de61;
+    
+   
+}
+
+.fancyButton3{
+ 
+    background-color: #86e961;
+}
+
+.fancyButton4{
+ 
+    background-color: #61e9ac;
+}
+
+.fancyButton5{
+ 
+    background-color: #617de9;
+}
+
+.button{
+ 
+     width:80px;
+    color:#ffffff;
+    text-shadow: none;
+    margin:5px;
+    height:30px;
+    font-size:12px;
+    text-shadow: none;
+    display: inline-block;
+    box-shadow: 0 0 1px #555555;
+}
+.button:active{
+ 
+    box-shadow: 0 0 8px #555555;
+    
+}
+
+.ribbon p{
+ 
+    width: 150px;
+    height: 85px;
+    display: table-cell;
+    vertical-align:middle;
+    text-align:center;
+    text-shadow: none;
+}
+
+.ribbon{
+ 
+ background:url('../img/accessCard1.png') top left no-repeat;background-size:100% 100%;width:100px;height:100px;
+}
+.card {
+    width:250px;background-color:#ffffff;text-shadow:none;
+    box-shadow: 0px 0px 1px #555555;
+}
+
+#cardLvl {
+    font-size: 16px;
+}
+
+.icon {
+    width:20px;
+}
+
+.inventoryDiv {
+    min-width:300px;
+    
+}
+
+.inventoryDiv tr td{
+ min-width:20px;   
+}
+.inventoryDiv tr td:nth-child(odd){
+ 
+    border-left: 1px SOLID #dedede;
+    padding-left:10px;
+}
+.inventoryDiv tr td:last-child{
+ 
+    border-right: 1px SOLID #dedede;
+}
+
+.smallIcon {
+    width:20px;
+}
+
+.tdSelect {
+    border-bottom:2px SOLID BLUE;
+    
+}
+
+.gm-style div:nth-child(2) a div, .gm-style div:nth-child(6), .gm-style div:nth-child(8) div:nth-child(2){
+    display: none !important;
+}
+
+
+/*
+.gm-style div:nth-child(2) a div,.gm-style div:nth-child(4) div, .gm-style div:nth-child(6), .gm-style div:nth-child(8) div:nth-child(2){
+    display: none !important;
+}
+*/
