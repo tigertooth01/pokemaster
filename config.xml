@@ -23,5 +23,19 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    
+    
     <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <preference name="SplashScreen" value="screen" />
+<preference name="SplashScreenDelay" value="5000" />
+    <platform name="android">
+        <icon src="www/res/icon/android/mipmap-ldpi/ic_launcher.png" density="ldpi" />
+              <icon src="www/res/icon/android/mipmap-mdpi/ic_launcher.png" density="mdpi" />
+              <icon src="www/res/icon/android/mipmap-hdpi/ic_launcher.png" density="hdpi" />
+              <icon src="www/res/icon/android/mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
+    <splash src="www/res/screen/android/screen-hdpi-portrait.png" density="port-hdpi"/>
+    <splash src="www/res/screen/android/screen-ldpi-portrait.png" density="port-ldpi"/>
+    <splash src="www/res/screen/android/screen-mdpi-portrait.png" density="port-mdpi"/>
+    <splash src="www/res/screen/android/screen-xhdpi-portrait.png" density="port-xhdpi"/>
+  </platform>
 </widget>

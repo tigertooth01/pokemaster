@@ -9,19 +9,11 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"DialogGPS\"><param name=\"android-package\" value=\"cl.rmd.cordova.dialoggps.DialogGPS\" /></feature>",
                             "count": 1
                         },
                         {
                             "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"PDialog\"><param name=\"android-package\" value=\"io.github.pwlin.cordova.plugins.pdialog.PDialog\" /></feature>",
                             "count": 1
                         },
                         {
@@ -37,15 +29,27 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"DialogGPS\"><param name=\"android-package\" value=\"cl.rmd.cordova.dialoggps.DialogGPS\" /></feature>",
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PDialog\"><param name=\"android-package\" value=\"io.github.pwlin.cordova.plugins.pdialog.PDialog\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -55,15 +59,15 @@
                 "parents": {
                     "/manifest": [
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
-                            "count": 1
-                        },
-                        {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
                             "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
                             "count": 1
                         }
                     ],
@@ -81,10 +85,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-                            "count": 1
-                        },
-                        {
                             "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
                             "count": 1
                         },
@@ -95,6 +95,10 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -102,16 +106,10 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
+        "cl.rmd.cordova.dialoggps": {
             "PACKAGE_NAME": "com.logicgiant.pokemaster"
         },
         "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "com.logicgiant.pokemaster"
-        },
-        "cordova-plugin-vibration": {
-            "PACKAGE_NAME": "com.logicgiant.pokemaster"
-        },
-        "cordova-plugin-pdialog": {
             "PACKAGE_NAME": "com.logicgiant.pokemaster"
         },
         "cordova-plugin-file": {
@@ -123,23 +121,34 @@
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.logicgiant.pokemaster"
         },
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.logicgiant.pokemaster"
-        },
         "cordova-plugin-media": {
             "PACKAGE_NAME": "com.logicgiant.pokemaster"
         },
-        "cl.rmd.cordova.dialoggps": {
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.logicgiant.pokemaster"
+        },
+        "cordova-plugin-pdialog": {
+            "PACKAGE_NAME": "com.logicgiant.pokemaster"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.logicgiant.pokemaster"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.logicgiant.pokemaster"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.logicgiant.pokemaster"
         }
     },
     "dependent_plugins": {},
     "modules": [
         {
-            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
-            "id": "cordova-plugin-whitelist.whitelist",
-            "pluginId": "cordova-plugin-whitelist",
-            "runs": true
+            "file": "plugins/cl.rmd.cordova.dialoggps/www/DialogGPS.js",
+            "id": "cl.rmd.cordova.dialoggps.DialogGPS",
+            "pluginId": "cl.rmd.cordova.dialoggps",
+            "clobbers": [
+                "cordova.dialogGPS"
+            ]
         },
         {
             "file": "plugins/cordova-plugin-dialogs/www/notification.js",
@@ -155,23 +164,6 @@
             "pluginId": "cordova-plugin-dialogs",
             "merges": [
                 "navigator.notification"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-vibration/www/vibration.js",
-            "id": "cordova-plugin-vibration.notification",
-            "pluginId": "cordova-plugin-vibration",
-            "merges": [
-                "navigator.notification",
-                "navigator"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-pdialog/www/plugins.PDialog.js",
-            "id": "cordova-plugin-pdialog.PDialog",
-            "pluginId": "cordova-plugin-pdialog",
-            "clobbers": [
-                "cordova.plugin.pDialog"
             ]
         },
         {
@@ -378,6 +370,22 @@
             "runs": true
         },
         {
+            "file": "plugins/cordova-plugin-media/www/MediaError.js",
+            "id": "cordova-plugin-media.MediaError",
+            "pluginId": "cordova-plugin-media",
+            "clobbers": [
+                "window.MediaError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-media/www/Media.js",
+            "id": "cordova-plugin-media.Media",
+            "pluginId": "cordova-plugin-media",
+            "clobbers": [
+                "window.Media"
+            ]
+        },
+        {
             "file": "plugins/cordova-plugin-network-information/www/network.js",
             "id": "cordova-plugin-network-information.network",
             "pluginId": "cordova-plugin-network-information",
@@ -395,28 +403,35 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-media/www/MediaError.js",
-            "id": "cordova-plugin-media.MediaError",
-            "pluginId": "cordova-plugin-media",
+            "file": "plugins/cordova-plugin-pdialog/www/plugins.PDialog.js",
+            "id": "cordova-plugin-pdialog.PDialog",
+            "pluginId": "cordova-plugin-pdialog",
             "clobbers": [
-                "window.MediaError"
+                "cordova.plugin.pDialog"
             ]
         },
         {
-            "file": "plugins/cordova-plugin-media/www/Media.js",
-            "id": "cordova-plugin-media.Media",
-            "pluginId": "cordova-plugin-media",
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "pluginId": "cordova-plugin-splashscreen",
             "clobbers": [
-                "window.Media"
+                "navigator.splashscreen"
             ]
         },
         {
-            "file": "plugins/cl.rmd.cordova.dialoggps/www/DialogGPS.js",
-            "id": "cl.rmd.cordova.dialoggps.DialogGPS",
-            "pluginId": "cl.rmd.cordova.dialoggps",
-            "clobbers": [
-                "cordova.dialogGPS"
+            "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+            "id": "cordova-plugin-vibration.notification",
+            "pluginId": "cordova-plugin-vibration",
+            "merges": [
+                "navigator.notification",
+                "navigator"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+            "id": "cordova-plugin-whitelist.whitelist",
+            "pluginId": "cordova-plugin-whitelist",
+            "runs": true
         }
     ]
 }
