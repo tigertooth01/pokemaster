@@ -210,9 +210,11 @@
     
 }
 
+/*
 .gm-style div:nth-child(2) a div, .gm-style div:nth-child(6), .gm-style div:nth-child(8) div:nth-child(2){
     display: none !important;
 }
+*/
 
 
 /*
@@ -220,3 +222,19 @@
     display: none !important;
 }
 */
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+.themed {
+    
+}
+
+#pokemonName {
+    display: inline;
+}

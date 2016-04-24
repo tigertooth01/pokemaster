@@ -46,11 +46,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
         <link rel="stylesheet" type="text/css" href="css/animate.css" />
         <link rel="stylesheet" type="text/css" href="css/toastr.css" />
     </head>
-    <body style="background:#fff"  onload="init()">
+    <body onload="init()" class="themed">
          
         
         
-    <div data-role="page" id='mapPage' style="background:#fff;">
+    <div data-role="page" id='mapPage' class="themed">
         
         
         <div id="map-canvas">
@@ -59,11 +59,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
         <img src="" id="pokemonPic" class="animated bounce infinite pokemon_fullImg" height=200px width=auto onclick="throwBall();">
         
         <div align=center>
-            <p><label id=pokemonName></label><img class='ownsMark'></p>
+            <p style="margin:0;"><label id=pokemonName>Ssadfafas</label><img class='ownsMark'></p>
             </div>
             </div>
         
-        <div style='position:relative;z-index:2;background-color:#ffffff;'>
+        <div style='position:relative;z-index:2;background:#fff;'>
             <div align=center>
             <table class='inventoryDiv'>
                 <tr>
@@ -84,73 +84,17 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 </table>
             </div>
         
-        <div id=themeDiv style="background:url('img/theme/bg0.jpg') top left no-repeat;background-size:100% 100%;" class=shadowDiv>
-            <!--<div align=center>
-            <div align=center class='button accentColor' onclick="scanButton();">
-            <p>Scan</p>
-            </div>
-                <div align=center class='button accentColor' onclick="showParty()">
-            <p>My Party</p>
-            </div>
-                <div align=center class='button accentColor' onclick="window.localStorage.setItem('mb', 100);">
-            <p>Ball Cheat</p>
-            </div>
-                <div align=center class='button accentColor' onclick="playAudio('http://shahabazkhan.byethost3.com/pokemaster/data/cries/428.wav')">
-            <p>Cry</p>
-            </div>
-             
-            </div>
-<div align=center class='button accentColor' onclick="showParty()">
-            <p>My Party</p>
-            </div>
-                <div align=center class='button accentColor' onclick="window.localStorage.setItem('mb', 100);">
-            <p>Ball Cheat</p>
-            </div>
-                <div align=center class='button accentColor' onclick="playAudio('http://shahabazkhan.byethost3.com/pokemaster/data/cries/428.wav')">
-            <p>Cry</p>
-            </div>
--->
+        <div id=themeDiv class=shadowDiv>
+            
             <div align=center>
             <img id='scanBtn' style='width:100px;height:auto;display:inline-block' onclick="scanButton();"><br>
             <img id='myPartyBtn' style='width:150px;height:auto;display:inline-block;' onclick="showParty();"><br>
             <img id='trainerBtn' style='width:120px;height:auto;display:inline-block' onclick="nav('trainerCard');" /><br>
-            <img id='logoutBtn' style='width:120px;height:auto;display:inline-block' />
+            <img id='logoutBtn' style='width:120px;height:auto;display:inline-block' onclick="logout()"/>
             </div>
                 
-            <!--<div align=right>
-                <div class='ribbon'><p class=level>Lv. 1</p> </div>
-       <p>Registered to: <b><label class='trainerName'>...</label></b></p>
-                
-                </div>-->
-            
-            <!--<div align=center style='margin-top:50px;'>
-                <p>Master Respect: <label class='points'></label></p>
-                <table class='card'>
-                <tr>
-                    <td colspan=2>PokeMaster Member<hr></td>
-                    </tr>
-                    <tr>
-                        <td colspan=2 id='starSpot'>
-                        
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                    <td style='width:80px;'><img class='seal' style='width:80px;'></td>
-                        <td align=right><p class='trainerName'>Name</p><b><p class=level id=cardLvl>Lv..</p></b></td>
-                    </tr>
-                    <tr>
-                        <td colspan=2 style='background-color:BLACK'>
-                    <label>ID: <label class='id'></label></label>
-                        </td>
-                    </tr>
-                </table>
-            </div>-->
         </div>
         
-        <!--<div class=shadowDiv>
-        <p id="geolocation">Watching geolocation :P...</p>
-        </div>-->
             <p id='debugMsg'></p>
         <p><center><b>DISCLAIMER: This is a fan based application. Pok&#233;mon is owned by Nintendo, Game Freak, The Pok&#233;mon Company and Creatures. Please support the original products.</b></center></p>
             <p><center>Pok&#233;mon images &amp; names &#169; 1995-2015 Nintendo/Game Freak.</center></p>
@@ -239,9 +183,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
             </div>
         </div>
         
-       <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.1.css" />
+       <link rel="stylesheet" type="text/css" href="css/jquery.mobile.custom.structure.min.css" />
+<!--       <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.1.css" />-->
         <link rel="stylesheet" type="text/css" href="css/main.css" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+<!--        <link rel="stylesheet" type="text/css" href="css/index.css" />-->
         
         <script type="text/javascript" src="cordova.js"></script>
 

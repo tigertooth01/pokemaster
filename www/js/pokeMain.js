@@ -46,12 +46,12 @@ var link="http://logicgiant.com/client/";
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
-
 function onDeviceReady()
 {
    //google.maps.event.addDomListener(window, 'load', initialize);
     
    //alert('device ready');
+    
     document.addEventListener("offline", onOffline, false);
     cordova.dialogGPS("The app requires GPS to scan for nearby Pokemon",//message
                     "Use GPS, with wifi or mobile data.",//description
@@ -87,6 +87,73 @@ function onDeviceReady()
             
         }, false );
 
+}
+$(document).ready(function(){
+    
+    
+})
+function setDayCycleTheme(t){
+    switch(t){
+        case 0:
+            $('#themeDiv').css({"background":"url('"+store+"morning.png') top left no-repeat","background-size":"cover"});
+            break;
+        case 1:
+            $('#themeDiv').css({"background":"url('"+store+"lateMorning.png') top left no-repeat","background-size":"cover"});
+            break;
+        case 2:
+            $('#themeDiv').css({"background":"url('"+store+"afternoon.png') top left no-repeat","background-size":"cover"});
+            break;
+        case 3:
+            $('#themeDiv').css({"background":"url('"+store+"lateAfternoon.png') top left no-repeat","background-size":"cover"});
+            break;
+        case 4:
+            $('#themeDiv').css({"background":"url('"+store+"evening.png') top left no-repeat","background-size":"cover"});
+            break;
+        case 5:
+            $('#themeDiv').css({"background":"url('"+store+"lateEvening.png') top left no-repeat","background-size":"cover"});
+            break;
+        case 6:
+            $('#themeDiv').css({"background":"url('"+store+"night.png') top left no-repeat","background-size":"cover"});
+            break;
+        case 7:
+            $('#themeDiv').css({"background":"url('"+store+"lateNight.png') top left no-repeat","background-size":"cover"});
+            break;
+    }
+}
+
+function getDayLight(){
+    var n = getTime();
+    if(n[0]>=5&&n[0]<7){
+        return 0;
+    }
+    
+    else if(n[0]>=7&&n[0]<11){
+        return 1;
+    }
+    
+    else if(n[0]>=11&&n[0]<13){
+        return 2;
+    }
+    
+    else if(n[0]>=13&&n[0]<17){
+        return 3;
+    }
+    
+    else if(n[0]>=17&&n[0]<18){
+        return 4;
+    }
+    
+    else if(n[0]>=18&&n[0]<17){
+        return 5;
+    }
+    
+    else if(n[0]>=17&&n[0]<22){
+        return 6;
+    }
+    
+    else if(n[0]>=22||n[0]<5){
+        return 7;
+    }
 }
 
 function onOffline() {
@@ -716,6 +783,24 @@ function login()
                 });
     
 }
+
+function logout(){
+    nativeConfirm('Are you sure to logout?',onLogoutConfirm,'Logout','Yes,No');
+    
+    function onLogoutConfirm(index){
+        if(index==1){
+            logoutExec();
+        }
+    }
+    
+    
+}
+
+function logoutExec(){
+    window.localStorage.setItem("loginid", "");
+    window.localStorage.setItem("alias", "");
+    nav('register');
+}
 ////////////////////////////Capture PKMN///////////////////////////////
 function capture()
 {
@@ -1000,7 +1085,7 @@ function checkRefresh()
     if(window.localStorage.getItem("lastRefresh"))
     {
         
-        energy=window.localStorage.getItem("energy");
+    energy=window.localStorage.getItem("energy");
     pb=window.localStorage.getItem("pb");
     gb=window.localStorage.getItem("gb");
     ub=window.localStorage.getItem("ub");
@@ -1382,7 +1467,7 @@ function showPkmnDetails(index)//index is that of partyObj.
 
 //The directory to store data
 var store;
-
+var downloadStarted = false;
 //Used for status updates
 var $status;
 
@@ -1390,7 +1475,7 @@ var $status;
 var assetURL = link+"pokemaster/data/";
 
 //File name of our important data file we didn't ship with the app
-var fileName = ["pokemonJson.json","Poke%20Ball.png","ball.png","Featured-star.png","Great%20Ball.png","Master%20Ball.png","Ultra%20Ball.png","hologram.png","seal.png","pb_lit.png","gb_lit.png","ub_lit.png","mb_lit.png","effects/pokemonCaught.mp3","effects/pokemonEscape.mp3","effects/pokeballThrow.mp3","effects/pokeballWobble.mp3","effects/pickup.mp3","logout.png","myparty.png","trainer.png","scan.png"];
+var fileName = ["pokemonJson.json","Poke%20Ball.png","ball.png","Featured-star.png","Great%20Ball.png","Master%20Ball.png","Ultra%20Ball.png","hologram.png","seal.png","pb_lit.png","gb_lit.png","ub_lit.png","mb_lit.png","effects/pokemonCaught.mp3","effects/pokemonEscape.mp3","effects/pokeballThrow.mp3","effects/pokeballWobble.mp3","effects/pickup.mp3","logout.png","myparty.png","trainer.png","scan.png","afternoon.png","evening.png","lateAfternoon.png","lateEvening.png","lateMorning.png","morning.png","night.png","lateNight.png"];
 var currentFileIndex = 0;
 var requiredFile;
 
@@ -1403,7 +1488,7 @@ function downloadInit() {
 	store = cordova.file.dataDirectory;
     getFiles(currentFileIndex);
 	//Check for the file. 
-	cordova.plugin.pDialog.init({theme : "HOLO_LIGHT", progressStyle : 'HORIZONTAL', title: 'Please Wait..', message : 'Downloading assets...'});
+	cordova.plugin.pDialog.init({theme : "HOLO_LIGHT", progressStyle : 'HORIZONTAL', title: 'Please Wait..', message : 'Verifying assets...'});
     cordova.plugin.pDialog.setCancelable(false);
 }
 
@@ -1413,13 +1498,31 @@ function getFiles(i)
     window.resolveLocalFileSystemURL(store + requiredFile, appStart, downloadAsset);
 }
 function downloadAsset() {
+    if(!downloadStarted){
+        nativeConfirm('The app wants to download the required assets. Allow?',onDownloadPermit,'Confirm','Yes,No');
+    }
+    else{
+        download();
+    }
+    function onDownloadPermit(buttonIndex) {
+    if(buttonIndex==1)
+    {
+        downloadStarted = true;
+        download();
+    }
+        else{
+            plert('Please open the app when you are ready to download assets. The app will now quit!',exitAlertDismissed,'Exit','OK');
+        }
+}
+    function download(){
 	var fileTransfer = new FileTransfer();
 	//alert("About to start transfer");
     // needs plugin spinnerDialog
     /*window.plugins.spinnerDialog.hide();
     window.plugins.spinnerDialog.show("Downloading assets",currentFileIndex+1+"/"+fileName.length, true);*/
     
-    
+    cordova.plugin.pDialog.setTitle('Downloading assets');
+    cordova.plugin.pDialog.setMessage(requiredFile); 
     cordova.plugin.pDialog.setProgress(parseInt((currentFileIndex+1)*100/(fileName.length)));
 	fileTransfer.download(assetURL + requiredFile, store + requiredFile, 
 		function(entry) {
@@ -1434,6 +1537,7 @@ function downloadAsset() {
 		
 			console.dir(err);
 		});
+    }
 }
 
 //I'm only called when the file exists or has been downloaded.
@@ -1464,6 +1568,8 @@ function appStart() {
         $('#myPartyBtn').attr("src",store+"myparty.png");
         $('#trainerBtn').attr("src",store+"trainer.png");
         $('#logoutBtn').attr("src",store+"logout.png");
+        var dayLight = getDayLight();
+        setDayCycleTheme(dayLight);
         
     }
     
@@ -1513,3 +1619,10 @@ function playAudio(url) {
     // Play audio
     my_media.play();
 }
+
+function getTime() {
+    var d = new Date();
+    var n = [d.getHours(),d.getMinutes(),d.getSeconds()];
+    return n;
+}
+
